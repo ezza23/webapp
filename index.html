@@ -1,0 +1,173 @@
+<!--
+ * use i for icons 
+
+
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>WebApp</title>
+
+	<link rel="stylesheet" href="css/main.css">
+	 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+	<header>
+		<div class="layout-wrap">
+			<a href="#"><img src="img/logo-netcraft.svg" alt="netcraft"></a>
+
+			<form class="search-box">
+				<input type="search" name="q" placeholder="search">
+			</form>
+		</div>
+	</header>
+
+	<section class="page-body layout-wrap">
+		<div class="notifications"></div>
+
+		<nav>
+			<div class="nav-section">
+				<p>Select <br> Reporting Platform</p>
+
+				<div class="menu">
+					<div class="menu-caption">
+						<p>Choose QS report</p>
+					</div>
+
+					<ul class="action-list">
+						<li><a href="http://netcraft.co.il">Corporate</a></li>
+						<li><a href="#">Simple</a></li>
+						<li><a href="#">Business</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="nav-section">
+				<p>Select<br> Dashboard</p>
+
+				<div class="menu">
+					<div class="menu-caption">
+						<p>Choose dashboard</p>
+					</div>
+
+					<ul class="action-list">
+						<li><a href="#">Account Dashboard </a></li>
+						<li><a href="#">Daily Hudlle Dashboard</a></li>
+						<li><a href="#">Tier 2 Dashboard</a></li>
+						<li><a href="#">ADM Dashboardc</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			<div class="nav-section">
+				<p>Help &amp; <br>Tutorials</p>
+
+				<div class="menu">
+					<div class="menu-caption">
+						<p>Choose guide</p>
+					</div>
+
+					<ul class="action-list">
+						<li><a href="#">Real Time</a></li>
+						<li><a href="#">Past Data</a></li>
+						<li><a href="#">Corporate Data</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<section class="tabs">
+			<ul>
+				<li><a href="#quick-reports" class="tabs-links" id="tab-link">Quick Reports</a></li>
+				<li><a href="#my-folders" class="tabs-links" id="tab-link">My Folders</a></li>
+				<li><a href="#my-team-folders" class="tabs-links" id="tab-link">My Team Folders</a></li>
+				<li><a href="#public-folders" class="tabs-links" id="tab-link">Public Folders</a></li>
+			</ul>
+
+			<div id="quick-reports">
+				
+					<ul class="dynamic-links">
+						
+					</ul>
+			</div>
+
+			<div id="my-folders">
+			</div>
+
+			<div id="my-team-folders">
+				<ul class="dynamic-links">
+						
+				</ul>
+			</div>
+
+			<div id="public-folders">
+			</div>
+</section>
+			<!-- $$$$$$$$$$$$$$ -->
+		<section class="frame-section">
+			<div class="content-header">
+				<div class="default-link"><a href="http://ezza23.github.io/comverse" target="frameId">comverse</a></div>
+				<ul class="links-list hidden">
+					<li><a href="http://netcraft.co.il/" target="frameId">netcraft</a></li>
+					<li><a href="http://www.w3schools.com/" target="frameId">w3 schools</a></li>
+					<li><a>link1</a></li>
+					<li><a>link1</a></li>
+				</ul>
+				<label class="setting" for="set" id="settingId">
+					<img src="img/icons/settings.png">
+				</label>
+				<input type="checkbox" id="set">
+				<div class="expand">
+					<a href="" id="expand-url" target="_blank"><img src="img/icons/expand.png"></a>	
+				</div>
+				<div class="feildset-form">
+					<form class="setting-form">
+
+						<fieldset class="form-feildset">
+							<span>Report 01</span>
+							<label class="report-lbl" for="">Name </label>
+							<input class="report-input" type="text" id="name1">
+							<label class="report-lbl" for="">URL</label>
+							<input class="report-input" type="text" id="url1">
+						</fieldset>
+
+						<fieldset class="form-feildset">
+							<span>Report 02</span>
+							<label class="report-lbl" for="">Name </label>
+							<input class="report-input" type="text">
+							<label class="report-lbl" for="">URL</label>
+							<input class="report-input" type="text">
+						</fieldset>
+
+						<fieldset class="form-feildset">
+							<span>Report 03</span>
+							<label class="report-lbl" for="">Name </label>
+							<input class="report-input" type="text">
+							<label class="report-lbl" for="">URL</label>
+							<input class="report-input" type="text">
+						</fieldset>
+						<button id="setting-save">Save</button>
+						<button id="setting-cancel">Cancel</button>
+
+					</form>
+				</div>
+			</div>
+			<iframe src="" class="frame-area" name="frameId"></iframe>
+
+		</section>
+		
+ 
+	<script src="js/main.js"></script>
+</body>
+</html>
+
+
+
+<!--  -->

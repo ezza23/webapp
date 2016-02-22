@@ -1,0 +1,352 @@
+* {
+	font-family: sans-serif;
+}
+header{
+		background-color: black
+}
+.layout-wrap{
+
+	padding: 1%;
+    margin:0px;
+    width: 100%;
+    z-index: 1;
+}
+.layout-wrap > a > img{
+	margin-left: 5%;
+	padding:5px;
+}
+.search-box{
+	width: 12%;
+	position:relative;
+	margin-top:1%;
+    margin-right: 6.5%;
+	display: inline-block;
+	float: right;
+    padding-left: 0px;
+   padding-bottom: 2px;
+  	background-color: #fff;
+    border: 1px solid;
+    border-color:  #CCC;
+}
+
+.search-box > input{
+	 width: 96%;
+    padding: 2px 2px 2px 7px;
+    padding-left: 4px;
+    border: none;
+    margin-top: 3px;
+    margin-left: 2px;
+    display: inline-block;   
+    outline: medium none;
+}
+body{
+	background:url(..//img/body-background.jpg);
+	background-color: transparent;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+    margin: 0;
+    padding:0;
+}
+.notifications{
+	background-color: #EBEBEB;
+	height: 25px;
+	margin-bottom: 1.5%;
+}
+
+nav{
+	margin-left: 5%;
+	width: 103%;
+}
+.page-body{
+	background: rgba(116, 116, 116, 0.7);
+	width: 89%;
+	margin-left: 5%;
+}
+.nav-section{
+	color: #EBEBEB;
+	float: left;
+	margin-right: 7%;
+	margin-left: -5%;
+	width: 31%;
+	height: 120px;
+	background:url(..//img/icons/action-report-new.png) left 50% top 60px no-repeat;
+	background-color: black;
+	opacity: 1;
+	cursor: pointer;
+}
+.nav-section p{
+	text-align: center;
+}
+.menu{
+	margin-top: 17%;
+	background-color: #EBEBEB;
+}
+.menu-caption{
+	font-size: 12px;
+	color: rgb(60, 60, 60);
+	margin-left: 5%;
+	margin-bottom: 1px;
+	padding:0px;
+	position: relative;
+}
+.menu-caption:after{
+    content: url(..//img/icons/arrow.png);
+    float: right;
+    margin-top: -10%;
+    margin-right: 4%;
+}
+.menu-caption > p{
+	padding: 2%;
+	text-align: left;
+}
+.menu-caption:hover:after,.nav-section:hover  .menu-caption:after{
+    transform: rotate(180deg);
+}
+.menu:hover .action-list, .nav-section:hover .action-list{
+	display: block;
+}
+.action-list{
+    margin: 0;
+    padding: 0 20px 0 20px;
+    list-style: none;
+    text-align: left;
+    display: none;
+    position: absolute;
+    width: 25.3%;
+    background: white;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin-top: -12px;
+}
+.action-list  li{
+	padding:2%;
+	border-bottom: 1px solid;
+}.action-list  li:last-child{
+	border-bottom: none;
+}
+.action-list  li > a{
+	color: rgb(60, 60, 60);
+	text-decoration: none;
+	font-size: 13px;
+}
+.action-list  li > a:hover,.links-list li > a:hover{
+	text-decoration: underline;
+}
+
+.action-list a:link, .action-list-item a:visited ,.default-link a:visited{
+	text-decoration: none;
+	color: rgb(60, 60, 60);
+}
+.tabs{
+	float: left;
+	width: 100%;
+	margin-top: 3.4%;
+}
+.tabs ul{
+	overflow: hidden;
+    margin: 0;
+    padding: 0;
+    margin-left: -0.26%;
+}
+.tabs ul > li{
+    background-color: #646464;
+    list-style: none;
+    float: left;
+    text-align: center;
+    width:23%;
+    margin-right: 2.66%;
+    margin-top: 1px;
+}
+.tabs ul > li:last-child{
+	margin-right: 0%;
+}
+.tabs ul >li > a{
+	text-decoration: none;
+	display: block;
+    color: #EBEBEB;
+    padding: 10px 0;
+    font-size: 0.8em;
+}
+/*.tabs ul >li > a:active{
+	color: green;
+}*/
+/*.active, .active:hover{
+background-color:#EBEBEB !important;
+
+}*/
+.content-header{
+	width: 100%;
+}
+
+#quick-reports{
+	display: none;
+}
+
+.frame-section{
+	margin: 13.2em 0 0 -3px;
+    padding: 10px 10px 0 10px;
+    background: #ebebeb;
+}
+.default-link{
+	display: inline-block;
+    height: 27px;
+    padding-left: 16px;
+    width: 214px;
+    background-color: white;
+    cursor: pointer;
+    padding-top: 7px;
+
+}
+.default-link:before{
+	 content: url(..//img/icons/arrow2.png);
+    float: right;
+ 	
+ 	 cursor: pointer;
+    margin-right: 3%;
+
+}
+
+.default-link a{
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.links-list{
+    margin-left: -40px;
+    padding-bottom: 3px;
+    padding-top: 0px;
+    position: absolute;
+	margin-top: 0.1em;
+}
+
+.links-list li{
+	list-style: none;
+    background: white;
+    border-bottom: 1px solid;
+    border-bottom-color: lightgray;
+    width: 213px;
+    padding-bottom: 3%;
+    padding-top: 3%;
+    padding-left: 17px;
+    text-align: left;
+   
+}
+.links-list li:last-child{
+	 border-bottom:none;
+
+}
+.links-list li > a{
+	color: rgb(60, 60, 60);
+	cursor: pointer;
+}
+.links-list li:hover{
+	background-color: lightgray;
+}
+
+.setting{
+	float: right;
+    cursor: pointer;
+    padding-left: 0.4em;
+    display: block;
+    text-align: center;
+    width: 26px;
+    height: 27px;
+    padding: 0.4em;
+   
+}
+#set{
+	display: none;
+}
+#set:checked ~ .feildset-form{
+	display: block;
+}
+
+.expand{
+	float: right;
+	cursor: pointer;
+	padding-right: 0.4em;
+	display: block;
+	margin-top: 0.4em;
+}
+.expand img{
+	margin-top: 4px;
+}
+
+.feildset-form{
+	display: none;
+	background-color: white;
+	box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.3);
+	height: 270px;
+	margin-top: 5px;
+
+}
+.form-feildset span{
+ 	color: rgb(60, 60, 60);
+}
+.setting-form{
+	margin-right: 1em;
+	margin-top: 1.2em;
+	display: inline-block;
+	margin-left: 1em;
+}
+
+.form-feildset{
+	border:none;
+	background-color: #DCDADA;
+	margin-bottom: 0.6em;
+	height: 2em;
+	text-align: center;
+	padding-top: 1em;
+	width: 100%;
+}
+.report-input{
+	border: none;
+	width: 25.5em;
+	padding: 0 0 0 0.3em;
+	height: 2.3em;
+	outline: medium none;
+	font-size: 13px;
+}
+.report-lbl{
+	margin-left: 5em;
+	color: rgb(60, 60, 60);;
+	padding-right: 0.2em;
+}
+
+#setting-save{
+    background: black;
+    color: white;
+    width: 7%;
+    height: 25px;
+    float: right;
+    border: none;
+    margin-right: -2.5%; 
+    margin-top: 0.5em;
+}
+#setting-cancel{ 
+    color: black;
+    background: white;
+    width: 5%;
+    height: 20px;
+    float: right;
+    text-decoration: underline;
+    border: none;
+     margin-right: 1%;
+    margin-top: 1%
+}
+
+.frame-area{
+	    width: 100%;
+    height: 50em;
+    margin: 0.6em 0 0 0;
+    border: none;
+    background: white;
+}
+.visible {
+	display: block;
+}
+.hidden {
+	display: none;
+}
