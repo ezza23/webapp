@@ -76,6 +76,7 @@ var UTILS = (function () {
                     return;
                   }
                 }
+                 $(".notifications").innerHTML = res.notifications;
               // Handle XML format
               } else if (contentType === 'text/xml' ||
                 contentType === 'application/xml') {
@@ -94,6 +95,7 @@ var UTILS = (function () {
             if (options.done) {
               options.done.call(xhr, res);
             }
+
           }
 
         }
@@ -101,11 +103,12 @@ var UTILS = (function () {
 
       // Fire the request
       xhr.send(null);
+     
     },
     getDataRequest: function(){
 
         UTILS.ajax('data/config.json');
-        $(".notifications").innerHTML = notification;
+      
     }
   };
 }());
