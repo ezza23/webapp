@@ -76,7 +76,7 @@ var UTILS = (function () {
                     return;
                   }
                 }
-                 $(".notifications").innerHTML = res.notifications;
+                 $(".notifications").innerHTML = res.notification;
               // Handle XML format
               } else if (contentType === 'text/xml' ||
                 contentType === 'application/xml') {
