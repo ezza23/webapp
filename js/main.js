@@ -105,6 +105,7 @@ var UTILS = (function () {
       xhr.send(null);
      
     },
+    // make ajax GET request and read json file for notifications
     getDataRequest: function(){
 
         UTILS.ajax('data/config.json');
@@ -115,7 +116,7 @@ var UTILS = (function () {
 
 
 
-
+// set the relevant link for the expand button
  function setExpandLink() {
 
      var el=document.getElementById("reports-links");
@@ -144,21 +145,27 @@ if (document.addEventListener) {
 
 };
 
+// activate the pressed tab
 var setActiveTab=function(){
   var tabsList =document.getElementsByClassName("tabs-links");
+  // current tab hash
    var active=this.hash;
 
     for (var i = 0; i < tabsList.length; i++) {
         if (tabsList[i].hash == active) {
           x=tabsList[i].parentNode;
+          // set the tab toggle class to be active-tab
           x.className+=' active-tab';
         } else {
+          // remove the active-tab class from the other tabs
           x=tabsList[i].parentNode;
+           // remove the active-tab class from the other tabs
           x.className='tab';
+          // hide the other tabs content
         $(tabsList[i].hash).classList.add('hidden');
         }
       }
-  
+    // show current tab content
      $(active).classList.remove('hidden');
 
 
@@ -167,7 +174,7 @@ var setActiveTab=function(){
 
 // on expand click
 document.getElementById("expand-url").addEventListener("click", setExpandLink);
-// on tab click
+// on every tab click
 var tabs =document.getElementsByClassName("tabs-links");
 
 for (var i = 0; i < tabs.length; i++) {
@@ -176,53 +183,38 @@ for (var i = 0; i < tabs.length; i++) {
 
 
 
-//// read JSON file 
-
-// var getDataRequest=function(){
-
-//   ajax('data/config.json');
-//     };
-        //    ajax({
-
-        //     url: 'data/config.json',
-        //     dataType: "json"
-
-        // })
-        // .done(function (response) {
-        //     if (response && response !== '') {
-        //         $('.notifications').removeClass('hidden');
-        //         $('.notifications').text(response.notification);
-        //     }
-        // });
-
-
-
 
 function initialize () {
+  // quick-reports setting button
 	document.getElementById("quickreports-setting").addEventListener('click',function(e){
+    // set the setting to be active (white background)
   $("#quickreports-setting").classList.toggle('active-setting') ;
+    // show the feildset content
     $("#quickreports-feildset-form").classList.toggle('hidden');
 
 });
+  // my-team-folders setting button
 document.getElementById("teamfolders-setting").addEventListener('click',function(e){
+  // set the setting to be active (white background)
   $("#teamfolders-setting").classList.toggle('active-setting') ;
+   // show the feildset content
     $("#teamfolders-feildset-form").classList.toggle('hidden');
 });
 
+// quick reports setting cancel 
 document.getElementById("quickreports-cancel").addEventListener('click',function(e){
-
    e.preventDefault();
    $('#quickreports-setting').click();
 
 });
-
+// my team folders setting cancel 
 document.getElementById("teamfolders-cancel").addEventListener('click',function(e){
    e.preventDefault();
    $('#teamfolders-setting').click();
 
 });
 
-
+// get notifications
  UTILS.getDataRequest();
 
 
