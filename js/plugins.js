@@ -1,12 +1,3 @@
-
-//General function to select DOM elements
-function $ (selector) {
-  return document.querySelector(selector);
-}
-
-function all (selector) {
-  return document.querySelectorAll(selector);
-}
 /**
  * JS Library v2
  */
@@ -98,127 +89,58 @@ var UTILS = (function () {
       // Fire the request
       xhr.send(null);
     },
-    getDataRequest: function(){
 
-        UTILS.ajax('data/config.json');
-    }
-  };
-}());
-
-
-
-
- function setExpandLink() {
-
-     var el=document.getElementById("reports-links");
-
-  $('#expand-url').href=el.options[el.selectedIndex].value;
-    return false;
-
-}
-
-var addEventListener = function(obj, evt, fnc) {
+    addEventListener = function(obj, evt, fnc) {
 if (document.addEventListener) {
-    var addEvent = function(elem, type, handler) {
+    addEvent = function(elem, type, handler) {
         elem.addEventListener(type, handler, false)
     }
-    var removeEvent = function(elem, type, handler) {
+     removeEvent = function(elem, type, handler) {
         elem.removeEventListener(type, handler, false)
     }
 } else {
-    var addEvent = function(elem, type, handler) {
+    addEvent = function(elem, type, handler) {
         elem.attachEvent("on" + type, handler)
     }
-    var removeEvent = function(elem, type, handler) {
+    removeEvent = function(elem, type, handler) {
         elem.detachEvent("on" + type, handler)
     }
 }
 
-};
+},
 
-var setActiveTab=function(){
-  var tabsList =document.getElementsByClassName("tabs-links");
-   var active=this.hash;
+// set the current tab to be active, and deactive the others
+setActiveTab=function(){
 
-    for (var i = 0; i < tabsList.length; i++) {
-        if (tabsList[i].hash == active) {
-          x=tabsList[i].parentNode;
-          x.className+=' active-tab';
-        } else {
-          x=tabsList[i].parentNode;
-          x.className='tab';
-        $(tabsList[i].hash).classList.add('hidden');
-        }
+var tabsList =document.getElementsByClassName("tabs-links");
+
+ var active=this.hash;
+
+  for (var i = 0; i < tabsList.length; i++) {
+      if (tabsList[i].hash == active) {
+        tabsList[i].parentNode.style.backgroundColor="#ebebeb";
+        tabsList[i].style.color="rgb(60, 60, 60)";
+      } else {
+        tabsList[i].parentNode.style.backgroundColor = "#646464";
+        tabsList[i].style.color="white";
       }
-  
-     $(active).classList.remove('hidden');
+    }
+
+},
+
+settingsButtonActive: function(e){
+
+        $("settings").toggleClass('visbile');
+     
+    },
 
 
 
-};
 
-// on expand click
-document.getElementById("expand-url").addEventListener("click", setExpandLink);
-// on tab click
-var tabs =document.getElementsByClassName("tabs-links");
 
-for (var i = 0; i < tabs.length; i++) {
-    tabs[i].addEventListener("click", setActiveTab);
+
   };
 
 
 
-//// read JSON file 
-
-// var getDataRequest=function(){
-
-//   ajax('data/config.json');
-//     };
-        //    ajax({
-
-        //     url: 'data/config.json',
-        //     dataType: "json"
-
-        // })
-        // .done(function (response) {
-        //     if (response && response !== '') {
-        //         $('.notifications').removeClass('hidden');
-        //         $('.notifications').text(response.notification);
-        //     }
-        // });
-
-
-
-
-function initialize () {
-	document.getElementById("quickreports-setting").addEventListener('click',function(e){
-  $("#quickreports-setting").classList.toggle('active-setting') ;
-    $("#quickreports-feildset-form").classList.toggle('hidden');
-
-});
-document.getElementById("teamfolders-setting").addEventListener('click',function(e){
-  $("#teamfolders-setting").classList.toggle('active-setting') ;
-    $("#teamfolders-feildset-form").classList.toggle('hidden');
-});
-
-document.getElementById("quickreports-cancel").addEventListener('click',function(e){
-
-   e.preventDefault();
-   $('#quickreports-setting').click();
-
-});
-
-document.getElementById("teamfolders-cancel").addEventListener('click',function(e){
-   e.preventDefault();
-   $('#teamfolders-setting').click();
-
-});
-
-
- UTILS.getDataRequest();
-
-
- };
-
-window.onLoad = initialize();
-
+}());
