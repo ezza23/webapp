@@ -79,7 +79,7 @@ nav{
 	background:url(..//img/icons/action-report-new.png) left 50% top 60px no-repeat;
 	background-color: black;
 	cursor: pointer;
-	overflow: hidden;
+	/*overflow: hidden;*/
     
     padding: 0;
 }

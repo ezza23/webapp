@@ -32,12 +32,14 @@ var UTILS = (function () {
      * @param {Object} options AJAX settings
      */
     ajax: function (url, options) {
+
       var xhr = new XMLHttpRequest(),
         method = 'GET',
         options = UTILS.isObject(options) ? options : {};
 
       // Check if "method" was supplied
       if (options.method) {
+
         method = options.method;
       }
 
@@ -49,10 +51,12 @@ var UTILS = (function () {
 
         // If request finished
         if (xhr.readyState === 4) {
+
           status = xhr.status;
 
           // If response is OK or fetched from cache
           if ((status >= 200 && status < 300) || status === 304) {
+
             var res = xhr.responseText,
               contentType = xhr.getResponseHeader('Content-Type');
 
@@ -101,6 +105,7 @@ var UTILS = (function () {
     getDataRequest: function(){
 
         UTILS.ajax('data/config.json');
+        $(".notifications").innerHTML = notification;
     }
   };
 }());
