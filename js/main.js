@@ -114,17 +114,33 @@ var UTILS = (function () {
   };
 }());
 
-
-
-// set the relevant link for the expand button
- function setExpandLink() {
+// update the frame according to the selected option
+function updateFrame(){
+ 
+  $('#reports-links').addEventListener('change',setQrFrameExpandURL);
+  $('#teamfolders-links').addEventListener('change',setTfFrameURL);
+}
+// set quick-reports  relevant link for the expand button and frame section
+ function setQrFrameExpandURL() {
 
      var el=document.getElementById("reports-links");
 
-  $('#expand-url').href=el.options[el.selectedIndex].value;
+  $('#quickreports-expand-url').href=el.options[el.selectedIndex].value;
+  $('#quickreports-frame').src=el.options[el.selectedIndex].value;
     return false;
 
 }
+// set team folders the relevant link for the expand button and frame section
+ function setTfFrameURL() {
+
+     var el=document.getElementById("teamfolders-links");
+
+  $('#tfolders-frame').src=el.options[el.selectedIndex].value;
+    return false;
+
+}
+
+
 
 var addEventListener = function(obj, evt, fnc) {
 if (document.addEventListener) {
@@ -172,15 +188,15 @@ var setActiveTab=function(){
 
 };
 
+
 // on expand click
-document.getElementById("expand-url").addEventListener("click", setExpandLink);
+// document.getElementById("expand-url").addEventListener("click", setExpandLink);
 // on every tab click
 var tabs =document.getElementsByClassName("tabs-links");
 
 for (var i = 0; i < tabs.length; i++) {
     tabs[i].addEventListener("click", setActiveTab);
   };
-
 
 
 
@@ -213,7 +229,9 @@ document.getElementById("teamfolders-cancel").addEventListener('click',function(
    $('#teamfolders-setting').click();
 
 });
-
+ setQrFrameExpandURL();
+ setTfFrameURL();
+ updateFrame();
 // get notifications
  UTILS.getDataRequest();
 
