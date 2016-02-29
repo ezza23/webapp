@@ -188,6 +188,42 @@ var setActiveTab=function(){
 
 };
 
+var checkInputs=function(e){
+
+  valid=1;
+  currentTab=this.id;
+  currentTab=currentTab.substr(0,currentTab.indexOf('-save'));
+  var inputFields=all('#'+currentTab+'-feildset-form' +' .report-input');
+  for (var i = 0; i < inputFields.length; i +=2) {
+     if((inputFields[i].value!="" || inputFields[i].value!=null) && (inputFields[i+1].value=="" || inputFields[i+1].value==null)){
+        inputFields[i+1].required=true;
+        inputFields[i].required=true;
+        valid=0;
+     }
+    if((inputFields[i].value=="" || inputFields[i].value==null) && (inputFields[i+1].value!="" || inputFields[i+1].value!=null)){
+            inputFields[i].required=true;
+            inputFields[i+1].required=true;
+            valid=0;
+      }
+      if((inputFields[i].value=="" || inputFields[i].value==null) && (inputFields[i+1].value=="" || inputFields[i+1].value==null) ){
+            inputFields[i].required=false;
+            inputFields[i+1].required=false;
+            valid=1;
+      }
+  }
+ 
+  if(valid==1 && $(".setting-form").checkValidity())
+  {
+    saveFormData();
+
+  }
+  return ;
+};
+
+var saveFormData = function(){
+
+  alert("I LOVE YOU :P");
+}
 
 // on expand click
 // document.getElementById("expand-url").addEventListener("click", setExpandLink);
@@ -198,15 +234,15 @@ for (var i = 0; i < tabs.length; i++) {
     tabs[i].addEventListener("click", setActiveTab);
   };
 
-
-
+document.getElementById("quick-reports-save").addEventListener('click',checkInputs);
+document.getElementById("my-team-folders-save").addEventListener('click',checkInputs);
 function initialize () {
   // quick-reports setting button
 	document.getElementById("quickreports-setting").addEventListener('click',function(e){
     // set the setting to be active (white background)
   $("#quickreports-setting").classList.toggle('active-setting') ;
     // show the feildset content
-    $("#quickreports-feildset-form").classList.toggle('hidden');
+    $("#quick-reports-feildset-form").classList.toggle('hidden');
 
 });
   // my-team-folders setting button
@@ -214,7 +250,7 @@ document.getElementById("teamfolders-setting").addEventListener('click',function
   // set the setting to be active (white background)
   $("#teamfolders-setting").classList.toggle('active-setting') ;
    // show the feildset content
-    $("#teamfolders-feildset-form").classList.toggle('hidden');
+    $("#my-team-folders-feildset-form").classList.toggle('hidden');
 });
 
 // quick reports setting cancel 
@@ -229,6 +265,8 @@ document.getElementById("teamfolders-cancel").addEventListener('click',function(
    $('#teamfolders-setting').click();
 
 });
+
+
  setQrFrameExpandURL();
  setTfFrameURL();
  updateFrame();

@@ -111,33 +111,33 @@
 
 					<!-- ################### Feildset form ######################### -->
 					
-					<div class="feildset-form hidden" id="quickreports-feildset-form">
-						<form class="setting-form">
+					<div class="feildset-form hidden" id="quick-reports-feildset-form">
+						<form class="setting-form" onsubmit="event.preventDefault()">
 
 							<fieldset class="form-feildset">
 								<span>Report 01</span>
 								<label class="report-lbl" for="">Name </label>
 								<input class="report-input" type="text" id="name1">
 								<label class="report-lbl" for="">URL</label>
-								<input class="report-input" type="text" id="url1">
+								<input class="report-input" type="url" id="url1">
 							</fieldset>
 
 							<fieldset class="form-feildset">
 								<span>Report 02</span>
 								<label class="report-lbl" for="">Name </label>
-								<input class="report-input" type="text">
+								<input class="report-input" type="text" id="name2">
 								<label class="report-lbl" for="">URL</label>
-								<input class="report-input" type="text">
+								<input class="report-input" type="url" id="url2">
 							</fieldset>
 
 							<fieldset class="form-feildset">
 								<span>Report 03</span>
 								<label class="report-lbl" for="">Name </label>
-								<input class="report-input" type="text">
+								<input class="report-input" type="text" id="name3">
 								<label class="report-lbl" for="">URL</label>
-								<input class="report-input" type="text">
+								<input class="report-input" type="url" id="url3">
 							</fieldset>
-							<button class="setting-save" id="quickreports-save">Save</button>
+							<input type="submit" class="setting-save" value="Save" id="quick-reports-save">
 							<button class="setting-cancel" id="quickreports-cancel">Cancel</button>
 
 						</form>
@@ -179,7 +179,7 @@
 
 					<!-- ################### Feildset form ######################### -->
 					
-					<div class="feildset-form hidden" id="teamfolders-feildset-form">
+					<div class="feildset-form hidden" id="my-team-folders-feildset-form">
 						<form class="setting-form">
 
 							<fieldset class="form-feildset">
@@ -187,7 +187,7 @@
 								<label class="report-lbl" for="">Name </label>
 								<input class="report-input" type="text" id="name1">
 								<label class="report-lbl" for="">URL</label>
-								<input class="report-input" type="text" id="url1">
+								<input class="report-input" type="url" id="url1">
 							</fieldset>
 
 							<fieldset class="form-feildset">
@@ -195,7 +195,7 @@
 								<label class="report-lbl" for="">Name </label>
 								<input class="report-input" type="text">
 								<label class="report-lbl" for="">URL</label>
-								<input class="report-input" type="text">
+								<input class="report-input" type="url">
 							</fieldset>
 
 							<fieldset class="form-feildset">
@@ -203,9 +203,9 @@
 								<label class="report-lbl" for="">Name </label>
 								<input class="report-input" type="text">
 								<label class="report-lbl" for="">URL</label>
-								<input class="report-input" type="text">
+								<input class="report-input" type="url">
 							</fieldset>
-							<button class="setting-save" id="teamfolders-save">Save</button>
+							<button class="setting-save" id="my-team-folders-save">Save</button>
 							<button class="setting-cancel" id="teamfolders-cancel">Cancel</button>
 
 						</form>
