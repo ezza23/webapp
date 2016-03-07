@@ -292,7 +292,7 @@ select{
 	width: 25.5em;
 	padding: 0 0 0 0.3em;
 	height: 2.3em;
-	outline: medium none;
+	/*outline: medium none;*/
 	font-size: 13px;
 }
 .report-lbl{

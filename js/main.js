@@ -117,13 +117,13 @@ var UTILS = (function () {
 // update the frame according to the selected option
 function updateFrame(){
  
-  $('#reports-links').addEventListener('change',setQrFrameExpandURL);
-  $('#teamfolders-links').addEventListener('change',setTfFrameURL);
+  $('#quick-reports-links').addEventListener('change',setQrFrameExpandURL);
+ $('#my-team-folders-links').addEventListener('change',setTfFrameURL);
 }
 // set quick-reports  relevant link for the expand button and frame section
  function setQrFrameExpandURL() {
 
-     var el=document.getElementById("reports-links");
+     var el=document.getElementById("quick-reports-links");
 
   $('#quickreports-expand-url').href=el.options[el.selectedIndex].value;
   $('#quickreports-frame').src=el.options[el.selectedIndex].value;
@@ -133,8 +133,8 @@ function updateFrame(){
 // set team folders the relevant link for the expand button and frame section
  function setTfFrameURL() {
 
-     var el=document.getElementById("teamfolders-links");
-
+     var el=document.getElementById("my-team-folders-links");
+     if(el.options!=="undefined")
   $('#tfolders-frame').src=el.options[el.selectedIndex].value;
     return false;
 
@@ -198,6 +198,10 @@ var checkInputs=function(e){
      if((inputFields[i].value!="" || inputFields[i].value!=null) && (inputFields[i+1].value=="" || inputFields[i+1].value==null)){
         inputFields[i+1].required=true;
         inputFields[i].required=true;
+        inputFields[i+1].focus(function() {
+            inputFields[i+1].css('color','red');
+        });
+
         valid=0;
      }
     if((inputFields[i].value=="" || inputFields[i].value==null) && (inputFields[i+1].value!="" || inputFields[i+1].value!=null)){
@@ -214,15 +218,79 @@ var checkInputs=function(e){
  
   if(valid==1 && $(".setting-form").checkValidity())
   {
-    saveFormData();
+    createLocalStorage(currentTab,inputFields);
 
   }
   return ;
 };
 
-var saveFormData = function(){
+/// create localStorage and save the data from the form in it
+var createLocalStorage = function(currentTab,inputs){
+  //  var data=JSON.parse(localStorage.getItem('formData'));
+  // if(data!=null && data!=undefined){
+  //   // alert('hi');
+  //   localStorage.removeItem('formData');
+  // }
+  localStorage.clear();
+    var dataArr=[];
+   var form = $('#'+currentTab+'-feildset-form');
+  // check localStorage support
+ if (localStorage) {
+    for (var i = 0; i < inputs.length; i+=2) {
+        // if(inputs[i]!=null && inputs[i]!=""){
+         dataArr.push({
+                    name: inputs[i].value,
+                    nameKey: inputs[i].id,
+                    url: inputs[i+1].value,
+                    urlKey : inputs.id
+                });
+        }
+      // }
+    localStorage.setItem('formData', JSON.stringify(dataArr));
+    // tryget=JSON.parse(localStorage.getItem('formData'));
+    // alert(tryget[0].name);
+    submitFormData(currentTab);
 
-  alert("I LOVE YOU :P");
+ }
+else{
+  console.log('ERROR: localStorage is not supported');
+}  
+}
+
+var submitFormData=function(currentTab){
+  // list of the links
+  var linkList=$('#'+currentTab+'-links');
+  // check if the list is empty
+  if(linkList.length!==0){
+
+    for(var i=linkList.options.length-1;i>=0;i--)
+    {
+       linkList.remove(i);
+    }
+  }
+  // get the data from the local storage
+  var data=JSON.parse(localStorage.getItem('formData'));
+  if(data!=null && data!=undefined){
+    // create options
+    for(var i=0; i<data.length; i++){
+            if(data[i].name!=='' && data[i].url!==''){
+         var opt = document.createElement('option');
+            
+            opt.value = data[i].url;
+            opt.innerHTML = data[i].name;
+            linkList.appendChild(opt);
+          }          
+    }
+    // update the frame and the expand icon url
+    if(currentTab==="quick-reports")
+     setQrFrameExpandURL();
+   else
+    setTfFrameURL();
+    updateFrame();
+    // hide setting form
+     $('#quickreports-setting').click();
+  }
+
 }
 
 // on expand click
@@ -236,13 +304,17 @@ for (var i = 0; i < tabs.length; i++) {
 
 document.getElementById("quick-reports-save").addEventListener('click',checkInputs);
 document.getElementById("my-team-folders-save").addEventListener('click',checkInputs);
+
+
 function initialize () {
+
   // quick-reports setting button
 	document.getElementById("quickreports-setting").addEventListener('click',function(e){
     // set the setting to be active (white background)
   $("#quickreports-setting").classList.toggle('active-setting') ;
     // show the feildset content
     $("#quick-reports-feildset-form").classList.toggle('hidden');
+     document.getElementById("name1").focus();
 
 });
   // my-team-folders setting button
@@ -267,9 +339,7 @@ document.getElementById("teamfolders-cancel").addEventListener('click',function(
 });
 
 
- setQrFrameExpandURL();
- setTfFrameURL();
- updateFrame();
+
 // get notifications
  UTILS.getDataRequest();
 
