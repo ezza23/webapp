@@ -83,59 +83,59 @@
 
 		<section class="tabs">
 			<ul>
-				<li class="tab active-tab"><a href="#quick-reports" class="tabs-links" id="tab-link">Quick Reports</a></li>
-				<li class="tab"><a href="#my-folders" class="tabs-links" id="tab-link">My Folders</a></li>
-				<li class="tab"><a href="#my-team-folders" class="tabs-links" id="tab-link">My Team Folders</a></li>
-				<li class="tab"><a href="#public-folders" class="tabs-links" id="tab-link">Public Folders</a></li>
+				<li class="tab active-tab" id="tab1"><a href="#quick-reports" class="tabs-links" rel="quick-reports">Quick Reports</a></li>
+				<li class="tab" id="tab2"><a href="#my-folders" class="tabs-links" rel="my-folders">My Folders</a></li>
+				<li class="tab" id="tab3"><a href="#my-team-folders" class="tabs-links" rel="my-team-folders">My Team Folders</a></li>
+				<li class="tab" id="tab4"><a href="#public-folders" class="tabs-links" rel="public-folders" >Public Folders</a></li>
 			</ul>
 			
 
 		<section class="content-section">
 					
 						<!-- 			quick reports				 -->
-
-			<div id="quick-reports" class="quickreports hidden">
+			
+			<div id="quick-reports" class="quickreports">
 				<div class="content-header quick-reports">
-					<select id="quick-reports-links">
+					<select id="quick-reports-links" class="hidden">
 						<!-- <option value="http://netcraft.co.il">netcraft</option>
 						<option value="http://www.w3schools.com/">w3 schools</option>
 						<option value="">link1</option> -->
 					</select> 
-					<div class="setting" id="quickreports-setting">
+					<div class="setting active-setting" id="quick-reports-setting">
 						<img src="img/icons/settings.png">
 					</div>
 					<!-- <input type="checkbox" id="set"> -->
-					<div class="expand">
+					<div class="expand hidden">
 						<a href="" id="quickreports-expand-url" target="_blank"><img src="img/icons/expand.png"></a>
 					</div>
 
 					<!-- ################### Feildset form ######################### -->
 					
-					<div class="feildset-form hidden" id="quick-reports-feildset-form">
+					<div class="feildset-form" id="quick-reports-feildset-form">
 						<form class="setting-form" onsubmit="event.preventDefault()">
 
 							<fieldset class="form-feildset">
 								<span>Report 01</span>
 								<label class="report-lbl" for="">Name </label>
-								<input class="report-input" type="text" id="name1">
+								<input class="report-input" type="text" id="report1">
 								<label class="report-lbl" for="">URL</label>
-								<input class="report-input" type="url" id="url1">
+								<input class="report-input" type="url" id="rurl1">
 							</fieldset>
 
 							<fieldset class="form-feildset">
 								<span>Report 02</span>
 								<label class="report-lbl" for="">Name </label>
-								<input class="report-input" type="text" id="name2">
+								<input class="report-input" type="text" id="report2">
 								<label class="report-lbl" for="">URL</label>
-								<input class="report-input" type="url" id="url2">
+								<input class="report-input" type="url" id="rurl2">
 							</fieldset>
 
 							<fieldset class="form-feildset">
 								<span>Report 03</span>
 								<label class="report-lbl" for="">Name </label>
-								<input class="report-input" type="text" id="name3">
+								<input class="report-input" type="text" id="report3">
 								<label class="report-lbl" for="">URL</label>
-								<input class="report-input" type="url" id="url3">
+								<input class="report-input" type="url" id="rurl3">
 							</fieldset>
 							<input type="submit" class="setting-save" value="Save" id="quick-reports-save">
 							<button class="setting-cancel" id="quickreports-cancel">Cancel</button>
@@ -143,7 +143,7 @@
 						</form>
 					</div>
 				</div>
-				<div class="frame-content quick-reports">
+				<div class="frame-content hidden">
 					<iframe src="" class="frame-area" id="quickreports-frame"name="frameId"></iframe>
 				</div>
 				
@@ -167,51 +167,49 @@
 
 			<div id="my-team-folders" class="myteamfolders hidden">
 				<div class="content-header my-team-folders">
-					<select id="my-team-folders-links" >
-						<!-- <option value="http://www.w3schools.com/">w3schools</option>
-						<option value="http://www.ynet.co.il/">ynet</option>
-						<option value="">link1</option> -->
+					<select id="my-team-folders-links" class="hidden" >
+					
 					</select> 
-					<div class="setting" id="teamfolders-setting">
+					<div class="setting active-setting" id="my-team-folders-setting">
 						<img src="img/icons/settings.png">
 					</div>
 					
 
 					<!-- ################### Feildset form ######################### -->
 					
-					<div class="feildset-form hidden" id="my-team-folders-feildset-form">
-						<form class="setting-form">
+					<div class="feildset-form" id="my-team-folders-feildset-form">
+						<form class="setting-form" onsubmit="event.preventDefault()">
 
 							<fieldset class="form-feildset">
 								<span>Folder 01</span>
 								<label class="report-lbl" for="">Name </label>
-								<input class="report-input" type="text" id="name1">
+								<input class="report-input" type="text" id="folder1">
 								<label class="report-lbl" for="">URL</label>
-								<input class="report-input" type="url" id="url1">
+								<input class="report-input" type="url" id="furl1">
 							</fieldset>
 
 							<fieldset class="form-feildset">
 								<span>Folder 02</span>
 								<label class="report-lbl" for="">Name </label>
-								<input class="report-input" type="text">
+								<input class="report-input" type="text" id="folder2">
 								<label class="report-lbl" for="">URL</label>
-								<input class="report-input" type="url">
+								<input class="report-input" type="url" id="furl2">
 							</fieldset>
 
 							<fieldset class="form-feildset">
 								<span>Folder 03</span>
 								<label class="report-lbl" for="">Name </label>
-								<input class="report-input" type="text">
+								<input class="report-input" type="text" id="folder3">
 								<label class="report-lbl" for="">URL</label>
-								<input class="report-input" type="url">
+								<input class="report-input" type="url" id="furl3">
 							</fieldset>
-							<button class="setting-save" id="my-team-folders-save">Save</button>
+							<input type="submit" class="setting-save" value="Save" id="my-team-folders-save">
 							<button class="setting-cancel" id="teamfolders-cancel">Cancel</button>
 
 						</form>
 					</div>
 				</div>
-				<div class="frame-content my-team-folders">
+				<div class="frame-content hidden">
 					<iframe src="" class="frame-area" id="tfolders-frame" name="frameId"></iframe>
 				</div>
 			</div>

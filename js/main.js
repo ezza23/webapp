@@ -134,7 +134,7 @@ function updateFrame(){
  function setTfFrameURL() {
 
      var el=document.getElementById("my-team-folders-links");
-     if(el.options!=="undefined")
+     if(el.options!==undefined)
   $('#tfolders-frame').src=el.options[el.selectedIndex].value;
     return false;
 
@@ -163,9 +163,11 @@ if (document.addEventListener) {
 
 // activate the pressed tab
 var setActiveTab=function(){
+  
+
   var tabsList =document.getElementsByClassName("tabs-links");
   // current tab hash
-   var active=this.hash;
+   var active=this.hash || window.location.hash;
 
     for (var i = 0; i < tabsList.length; i++) {
         if (tabsList[i].hash == active) {
@@ -183,10 +185,43 @@ var setActiveTab=function(){
       }
     // show current tab content
      $(active).classList.remove('hidden');
-
-
-
 };
+
+// tab navigation using keyboard
+TabsNavigation= function(e) {
+    var curr;
+    var tabsList = document.getElementsByClassName("tab");
+    // check which tab is active
+    for (var i = 0; i < tabsList.length; i++) {
+    
+        if(tabsList[i].className === 'tab active-tab'){
+           curr=tabsList[i].id;
+        }
+      }
+
+    // var selectedTabIndex = UTILS.getSelectedTabIndex(tabslist);
+    switch (e.keyCode) {
+        case 37:{
+                if(parseInt(curr[3])>1){
+                  // alert(curr[3]);
+                 curr=curr.replace(curr[3],parseInt(curr[3]) - 1);
+                  // alert(curr[3]);
+                window.location.hash = $('#'+curr).children[0].rel;
+                // alert( $('#'+curr).children[0].rel);
+                setActiveTab();
+                }
+            break;
+            }
+        case 39:{
+                if(parseInt(curr[3]) < tabsList.length){
+                curr=curr.replace(curr[3],parseInt(curr[3]) + 1);
+                window.location.hash = $('#'+curr).children[0].rel;
+                setActiveTab();
+                }
+            break;
+            }
+       }
+        }
 
 var checkInputs=function(e){
 
@@ -195,16 +230,18 @@ var checkInputs=function(e){
   currentTab=currentTab.substr(0,currentTab.indexOf('-save'));
   var inputFields=all('#'+currentTab+'-feildset-form' +' .report-input');
   for (var i = 0; i < inputFields.length; i +=2) {
-     if((inputFields[i].value!="" || inputFields[i].value!=null) && (inputFields[i+1].value=="" || inputFields[i+1].value==null)){
+     if((inputFields[i].value!="" && inputFields[i].value!=null) && (inputFields[i+1].value=="" || inputFields[i+1].value==null)){
         inputFields[i+1].required=true;
         inputFields[i].required=true;
+
         inputFields[i+1].focus(function() {
             inputFields[i+1].css('color','red');
+
         });
 
         valid=0;
      }
-    if((inputFields[i].value=="" || inputFields[i].value==null) && (inputFields[i+1].value!="" || inputFields[i+1].value!=null)){
+    if((inputFields[i].value==="" || inputFields[i].value===null) && (inputFields[i+1].value!=="" && inputFields[i+1].value!==null)){
             inputFields[i].required=true;
             inputFields[i+1].required=true;
             valid=0;
@@ -212,11 +249,12 @@ var checkInputs=function(e){
       if((inputFields[i].value=="" || inputFields[i].value==null) && (inputFields[i+1].value=="" || inputFields[i+1].value==null) ){
             inputFields[i].required=false;
             inputFields[i+1].required=false;
+
             valid=1;
       }
   }
  
-  if(valid==1 && $(".setting-form").checkValidity())
+  if(valid==1 && $('#'+currentTab+'-feildset-form' +' .setting-form').checkValidity())
   {
     createLocalStorage(currentTab,inputFields);
 
@@ -226,11 +264,7 @@ var checkInputs=function(e){
 
 /// create localStorage and save the data from the form in it
 var createLocalStorage = function(currentTab,inputs){
-  //  var data=JSON.parse(localStorage.getItem('formData'));
-  // if(data!=null && data!=undefined){
-  //   // alert('hi');
-  //   localStorage.removeItem('formData');
-  // }
+
   localStorage.clear();
     var dataArr=[];
    var form = $('#'+currentTab+'-feildset-form');
@@ -258,11 +292,12 @@ else{
 }
 
 var submitFormData=function(currentTab){
+
   // list of the links
   var linkList=$('#'+currentTab+'-links');
   // check if the list is empty
   if(linkList.length!==0){
-
+    // delete all old links
     for(var i=linkList.options.length-1;i>=0;i--)
     {
        linkList.remove(i);
@@ -271,9 +306,11 @@ var submitFormData=function(currentTab){
   // get the data from the local storage
   var data=JSON.parse(localStorage.getItem('formData'));
   if(data!=null && data!=undefined){
+
     // create options
     for(var i=0; i<data.length; i++){
             if(data[i].name!=='' && data[i].url!==''){
+
          var opt = document.createElement('option');
             
             opt.value = data[i].url;
@@ -281,17 +318,77 @@ var submitFormData=function(currentTab){
             linkList.appendChild(opt);
           }          
     }
+    if(linkList.length!==0){
+
     // update the frame and the expand icon url
-    if(currentTab==="quick-reports")
+    if(currentTab==="quick-reports"){
      setQrFrameExpandURL();
+     // show expand icon
+      $('.expand').classList.remove('hidden');
+    }
    else
     setTfFrameURL();
     updateFrame();
     // hide setting form
-     $('#quickreports-setting').click();
-  }
+     $('#'+currentTab+'-setting').click();
 
+     // show select elemnt and iframe
+    $('#'+currentTab +' .frame-content').classList.remove('hidden');
+    $('#'+currentTab+'-links').classList.remove('hidden');
+     // $('#'+currentTab+' .content-section').style.height="55em";
+  }
+  
+  else{
+       alert('h');
+  // if the frame is empty.. // hide everything (revert to the initial state)
+  // if(linkList.length===0){
+    $('#'+currentTab+'-links').classList.toggle('hidden');
+    $('#'+currentTab +' .frame-content').classList.toggle('hidden');
+    $('.expand').classList.toggle('hidden');
+   }
 }
+}
+
+// when pressing enter in the input feild
+
+var inputFields=all('#quick-reports-feildset-form' +' .report-input');
+for (var i = 0; i < inputFields.length; i++) {
+ inputFields[i].addEventListener("keydown",function(event) {
+  // save when click Enter
+        if (event.keyCode == 13) {
+            event.preventDefault();
+             $('#quick-reports-save').click();
+            return false;
+         }
+         // cancel when click esc
+         if(event.keyCode == 27){
+
+          event.preventDefault();
+            $('#quickreports-cancel').click();
+            return false;
+         }
+    });
+};
+
+var inputs=all('#my-team-folders-feildset-form' +' .report-input');
+for (var i = 0; i < inputs.length; i++) {
+ inputs[i].addEventListener("keydown",function(e) {
+        if (e.keyCode == 13) {
+            e.preventDefault();
+             $('#my-team-folders-save').click();
+            return false;
+         }
+         if(e.keyCode == 27){
+
+          e.preventDefault();
+          $('#teamfolders-cancel').click();
+          return false;
+         }
+    });
+};
+
+
+
 
 // on expand click
 // document.getElementById("expand-url").addEventListener("click", setExpandLink);
@@ -309,18 +406,18 @@ document.getElementById("my-team-folders-save").addEventListener('click',checkIn
 function initialize () {
 
   // quick-reports setting button
-	document.getElementById("quickreports-setting").addEventListener('click',function(e){
+	document.getElementById("quick-reports-setting").addEventListener('click',function(e){
     // set the setting to be active (white background)
-  $("#quickreports-setting").classList.toggle('active-setting') ;
+  $("#quick-reports-setting").classList.toggle('active-setting') ;
     // show the feildset content
     $("#quick-reports-feildset-form").classList.toggle('hidden');
-     document.getElementById("name1").focus();
+     document.getElementById("report1").focus();
 
 });
   // my-team-folders setting button
-document.getElementById("teamfolders-setting").addEventListener('click',function(e){
+document.getElementById("my-team-folders-setting").addEventListener('click',function(e){
   // set the setting to be active (white background)
-  $("#teamfolders-setting").classList.toggle('active-setting') ;
+  $("#my-team-folders-setting").classList.toggle('active-setting') ;
    // show the feildset content
     $("#my-team-folders-feildset-form").classList.toggle('hidden');
 });
@@ -328,22 +425,21 @@ document.getElementById("teamfolders-setting").addEventListener('click',function
 // quick reports setting cancel 
 document.getElementById("quickreports-cancel").addEventListener('click',function(e){
    e.preventDefault();
-   $('#quickreports-setting').click();
+   $('#quick-reports-setting').click();
 
 });
 // my team folders setting cancel 
 document.getElementById("teamfolders-cancel").addEventListener('click',function(e){
    e.preventDefault();
-   $('#teamfolders-setting').click();
+   $('#my-team-folders-setting').click();
 
 });
 
 
-
 // get notifications
  UTILS.getDataRequest();
-
-
+// document.onkeydown = TabsNavigation();
+document.addEventListener("keydown",TabsNavigation);
  };
 
 window.onLoad = initialize();
