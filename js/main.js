@@ -453,6 +453,7 @@ document.getElementById("teamfolders-cancel").addEventListener('click',function(
    $('#my-team-folders-setting').click();
 
 });
+if(window.location.hash)
 setActiveTab();
 loadDataFromStorage();
 
