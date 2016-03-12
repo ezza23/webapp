@@ -276,7 +276,7 @@ var createLocalStorage = function(currentTab,inputs){
                     name: inputs[i].value,
                     nameKey: inputs[i].id,
                     url: inputs[i+1].value,
-                    urlKey : inputs.id
+                    urlKey : inputs[i+1].id
                 });
         }
       // }
@@ -339,7 +339,6 @@ var submitFormData=function(currentTab){
   }
   
   else{
-       alert('h');
   // if the frame is empty.. // hide everything (revert to the initial state)
   // if(linkList.length===0){
     $('#'+currentTab+'-links').classList.toggle('hidden');
@@ -347,6 +346,26 @@ var submitFormData=function(currentTab){
     $('.expand').classList.toggle('hidden');
    }
 }
+}
+
+var loadDataFromStorage=function(e){
+  // var forms=document.getElementsByClassName("feildset-form")[0];
+  var inputFields1=all('#quick-reports-feildset-form' +' .report-input');
+  var inputFields2=all('#my-team-folders-feildset-form' +' .report-input');
+   var data=JSON.parse(localStorage.getItem('formData'));
+   if(data!=null && data!=undefined){
+    
+  for (var i = 0,j=0; i < inputFields.length; i+=2,j++) {
+
+      inputFields1[i].value=data[j].name;
+      inputFields1[i+1].value=data[j].url;
+      inputFields2[i].value=data[j].name;
+      inputFields2[i+1].value=data[j].url;
+  }
+
+}
+submitFormData("quick-reports");
+submitFormData("my-team-folders");
 }
 
 // when pressing enter in the input feild
@@ -406,7 +425,7 @@ document.getElementById("my-team-folders-save").addEventListener('click',checkIn
 function initialize () {
 
   // quick-reports setting button
-	document.getElementById("quick-reports-setting").addEventListener('click',function(e){
+  document.getElementById("quick-reports-setting").addEventListener('click',function(e){
     // set the setting to be active (white background)
   $("#quick-reports-setting").classList.toggle('active-setting') ;
     // show the feildset content
@@ -434,7 +453,8 @@ document.getElementById("teamfolders-cancel").addEventListener('click',function(
    $('#my-team-folders-setting').click();
 
 });
-
+setActiveTab();
+loadDataFromStorage();
 
 // get notifications
  UTILS.getDataRequest();
