@@ -167,7 +167,7 @@ var fillMenu=function(data){
   var navSections = all(".nav-section");
   for (var i = 0; i < navSections.length; i++) {
     navSections[i].innerHTML = "<p>" + quickActions[i].label + "</p>" + navSections[i].innerHTML;
-    navSections[i].style.background = "url(./img/icons/" + quickActions[i].icon + ".png) center top 60px no-repeat";
+    navSections[i].style.background = "black url(./img/icons/" + quickActions[i].icon + ".png) center top 60px no-repeat";
   }
 
   //set menu captions

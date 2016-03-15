@@ -104,7 +104,7 @@ nav :last-child{
 }
 .menu{
 	background-color: #EBEBEB;
-	 margin-top: 8em;
+	 margin-top: 5em;
     height: 22px;
 }
 .menu-caption{
@@ -130,7 +130,7 @@ nav :last-child{
     border-right: 10px solid transparent;
     border-top: 10px solid black;
     margin: 1em;
-    margin-top: 0.5em;
+    margin-top: -2.5em;
     margin-right: 7%;
 }
 .nav-section:hover .action-list,.nav-section:focus .action-list{
@@ -155,14 +155,11 @@ nav :last-child{
     list-style: none;
     text-align: left;
     display: none;
-    position: absolute;
     background: white;
-    padding-top: 8px;
-    padding-bottom: 8px;
     margin-top: -12px;
     padding: 0;
     width: 100%;
-    top: 153px;
+    top: 170px;
     z-index: 1;
 }
 .action-list >  li{
