@@ -161,27 +161,31 @@ if (document.addEventListener) {
 
 };
 
+/// load data for nav-sections from JSON file
 var fillMenu=function(data){
   var quickActions=data.quickActions;
-  //set menus backgrounds and headers
+ 
   var navSections = all(".nav-section");
   for (var i = 0; i < navSections.length; i++) {
+    // set header for every nav-section
     navSections[i].innerHTML = "<p>" + quickActions[i].label + "</p>" + navSections[i].innerHTML;
-    navSections[i].style.background = "black url(./img/icons/" + quickActions[i].icon + ".png) center top 60px no-repeat";
+    // set background for every nav-section
+    navSections[i].style.background = "black url(./img/icons/" + quickActions[i].icon + ".png)  left 50% top 70px no-repeat";
   }
 
-  //set menu captions
+ 
   var menuCaptions = all(".menu-caption");
   for (var i = 0; i < menuCaptions.length; i++) {
+    // menu header
     menuCaptions[i].innerHTML = "<p>" + quickActions[i].actionsLabel + "</p>";
   }
 
-  //set links for quick actions menus
   var actionLists = all(".action-list");
   for (var i = 0; i < actionLists.length; i++) {
     actions = quickActions[i].actions;
     for (var j = 0; j < actions.length; j++) {
-      actionLists[i].innerHTML += "<li class=\"action-list-item\"><a href=\"" + actions[j].url + "\">" + actions[j].label + "</a></li>"
+      // set links
+      actionLists[i].innerHTML += "<li><a href=\"" + actions[j].url + "\">" + actions[j].label + "</a></li>"
     }
   }
 
