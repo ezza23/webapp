@@ -155,21 +155,20 @@ var checkInputs=function(e){
   currentTab=currentTab.substr(0,currentTab.indexOf('-save'));
   var inputFields=all('#'+currentTab+'-feildset-form' +' .report-input');
   for (var i = 0; i < inputFields.length; i +=2) {
-     if((inputFields[i].value!="" && inputFields[i].value!=null) && (inputFields[i+1].value=="" || inputFields[i+1].value==null)){
+     if((inputFields[i].value!=="" && inputFields[i].value!==null) && (inputFields[i+1].value==="" || inputFields[i+1].value===null)){
+
         inputFields[i+1].required=true;
         inputFields[i].required=true;
-
-        inputFields[i+1].focus(function() {
-            inputFields[i+1].css('color','red');
-
-        });
-
+        errorFocus(inputFields[i+1].id);
         valid=0;
      }
     if((inputFields[i].value==="" || inputFields[i].value===null) && (inputFields[i+1].value!=="" && inputFields[i+1].value!==null)){
             inputFields[i].required=true;
             inputFields[i+1].required=true;
+            errorFocus(inputFields[i].id);
             valid=0;
+
+
       }
       if((inputFields[i].value=="" || inputFields[i].value==null) && (inputFields[i+1].value=="" || inputFields[i+1].value==null) ){
             inputFields[i].required=false;
@@ -185,6 +184,20 @@ var checkInputs=function(e){
 
   }
   return ;
+};
+
+var errorFocus=function(id){
+   $('#'+id).addEventListener('focus',function(){
+            // this.value="a";
+       this.style.outline="none";
+        this.style.boxShadow="inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)";
+           });
+         $('#'+id).addEventListener('blur',function(){
+            // this.value="a";
+        this.style.borderColor="blue";
+          this.style.boxShadow="none";
+          });
+
 };
 
 /// create localStorage and save the data from the form in it
@@ -217,9 +230,6 @@ var createLocalStorage = function(){
     localStorage.setItem('formData', JSON.stringify(dataArr));
     // tryget=JSON.parse(localStorage.getItem('formData'));
    
-
-   
-
  }
 else{
   console.log('ERROR: localStorage is not supported');
@@ -340,9 +350,6 @@ for (var i = 0; i < inputs.length; i++) {
 
 
 
-
-// on expand click
-// document.getElementById("expand-url").addEventListener("click", setExpandLink);
 // on every tab click
 var tabs =document.getElementsByClassName("tabs-links");
 
