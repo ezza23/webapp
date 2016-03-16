@@ -23,12 +23,14 @@ var UTILS = (function () {
      * @param {Object} options AJAX settings
      */
     ajax: function (url, options) {
+
       var xhr = new XMLHttpRequest(),
         method = 'GET',
         options = UTILS.isObject(options) ? options : {};
 
       // Check if "method" was supplied
       if (options.method) {
+
         method = options.method;
       }
 
@@ -40,10 +42,12 @@ var UTILS = (function () {
 
         // If request finished
         if (xhr.readyState === 4) {
+
           status = xhr.status;
 
           // If response is OK or fetched from cache
           if ((status >= 200 && status < 300) || status === 304) {
+
             var res = xhr.responseText,
               contentType = xhr.getResponseHeader('Content-Type');
 
@@ -63,6 +67,7 @@ var UTILS = (function () {
                     return;
                   }
                 }
+                 $(".notifications").innerHTML = res.notification;
               // Handle XML format
               } else if (contentType === 'text/xml' ||
                 contentType === 'application/xml') {
@@ -81,6 +86,7 @@ var UTILS = (function () {
             if (options.done) {
               options.done.call(xhr, res);
             }
+
           }
 
         }
@@ -88,59 +94,13 @@ var UTILS = (function () {
 
       // Fire the request
       xhr.send(null);
-    },
-
-    addEventListener = function(obj, evt, fnc) {
-if (document.addEventListener) {
-    addEvent = function(elem, type, handler) {
-        elem.addEventListener(type, handler, false)
-    }
-     removeEvent = function(elem, type, handler) {
-        elem.removeEventListener(type, handler, false)
-    }
-} else {
-    addEvent = function(elem, type, handler) {
-        elem.attachEvent("on" + type, handler)
-    }
-    removeEvent = function(elem, type, handler) {
-        elem.detachEvent("on" + type, handler)
-    }
-}
-
-},
-
-// set the current tab to be active, and deactive the others
-setActiveTab=function(){
-
-var tabsList =document.getElementsByClassName("tabs-links");
-
- var active=this.hash;
-
-  for (var i = 0; i < tabsList.length; i++) {
-      if (tabsList[i].hash == active) {
-        tabsList[i].parentNode.style.backgroundColor="#ebebeb";
-        tabsList[i].style.color="rgb(60, 60, 60)";
-      } else {
-        tabsList[i].parentNode.style.backgroundColor = "#646464";
-        tabsList[i].style.color="white";
-      }
-    }
-
-},
-
-settingsButtonActive: function(e){
-
-        $("settings").toggleClass('visbile');
      
     },
+    // make ajax GET request and read json file for notifications
+    getDataRequest: function(){
 
-
-
-
-
-
+        UTILS.ajax('data/config.json');
+      
+    }
   };
-
-
-
 }());

@@ -128,11 +128,11 @@ TabsNavigation= function(e) {
     switch (e.keyCode) {
         case 37:{
                 if(parseInt(curr[3])>1){
-               
+                  // alert(curr[3]);
                  curr=curr.replace(curr[3],parseInt(curr[3]) - 1);
-              
+                  // alert(curr[3]);
                 window.location.hash = $('#'+curr).children[0].rel;
-             
+                // alert( $('#'+curr).children[0].rel);
                 setActiveTab();
                 }
             break;
@@ -181,28 +181,22 @@ var checkInputs=function(e){
  
   if(valid==1 && $('#'+currentTab+'-feildset-form' +' .setting-form').checkValidity())
   {
-    submitFormData(currentTab,inputFields);
+    createLocalStorage(currentTab,inputFields);
 
   }
   return ;
 };
 
 /// create localStorage and save the data from the form in it
-var createLocalStorage = function(){
+var createLocalStorage = function(currentTab,inputs){
 
-   localStorage.clear();
+  localStorage.clear();
     var dataArr=[];
-    var forms=all('.feildset-form');
+   var form = $('#'+currentTab+'-feildset-form');
   // check localStorage support
  if (localStorage) {
-  for(j=0; j<2; j++){
-    formid=forms[j].id;
-  
-    thisForm=formid.substr(0,formid.indexOf('-feildset-form'));
-    
-     var inputs=all('#'+thisForm+'-feildset-form' +' .report-input')
-   for (var i = 0; i < inputs.length; i+=2) {
-         if(inputs[i].value!==null && inputs[i].value!==""){
+    for (var i = 0; i < inputs.length; i+=2) {
+        // if(inputs[i]!=null && inputs[i]!=""){
          dataArr.push({
                     name: inputs[i].value,
                     nameKey: inputs[i].id,
@@ -210,24 +204,19 @@ var createLocalStorage = function(){
                     urlKey : inputs[i+1].id
                 });
         }
-       }
-
-      };
       // }
     localStorage.setItem('formData', JSON.stringify(dataArr));
     // tryget=JSON.parse(localStorage.getItem('formData'));
-   
-
-   
+    // alert(tryget[0].name);
+    submitFormData(currentTab);
 
  }
 else{
   console.log('ERROR: localStorage is not supported');
 }  
-return;
 }
 
-var submitFormData=function(currentTab,inputs){
+var submitFormData=function(currentTab){
 
   // list of the links
   var linkList=$('#'+currentTab+'-links');
@@ -239,21 +228,23 @@ var submitFormData=function(currentTab,inputs){
        linkList.remove(i);
     }
   }
+  // get the data from the local storage
+  var data=JSON.parse(localStorage.getItem('formData'));
+  if(data!=null && data!=undefined){
 
-  for (var i = 0; i < inputs.length; i+=2) {
-         if(inputs[i].value!==null && inputs[i].value!=="" && inputs[i+1].value!==null && inputs[i+1].value!==""){
-          var opt = document.createElement('option');
+    // create options
+    for(var i=0; i<data.length; i++){
+            if(data[i].name!=='' && data[i].url!==''){
+
+         var opt = document.createElement('option');
             
-            opt.value = inputs[i+1].value;
-            opt.innerHTML = inputs[i].value;
+            opt.value = data[i].url;
+            opt.innerHTML = data[i].name;
             linkList.appendChild(opt);
-            // alert(inputs[i+1].value);
-      
-        }
-      }
+          }          
+    }
     if(linkList.length!==0){
- 
-     
+
     // update the frame and the expand icon url
     if(currentTab==="quick-reports"){
      setQrFrameExpandURL();
@@ -275,13 +266,11 @@ var submitFormData=function(currentTab,inputs){
   else{
   // if the frame is empty.. // hide everything (revert to the initial state)
   // if(linkList.length===0){
-    // alert('please fill in the reports you like and save or else press cancel');
-    $('#'+currentTab+'-links').classList.add('hidden');
-    $('#'+currentTab +' .frame-content').classList.add('hidden');
-    $('.expand').classList.add('hidden');
+    $('#'+currentTab+'-links').classList.toggle('hidden');
+    $('#'+currentTab +' .frame-content').classList.toggle('hidden');
+    $('.expand').classList.toggle('hidden');
    }
-  createLocalStorage();
-
+}
 }
 
 var loadDataFromStorage=function(e){
@@ -289,15 +278,19 @@ var loadDataFromStorage=function(e){
   var inputFields1=all('#quick-reports-feildset-form' +' .report-input');
   var inputFields2=all('#my-team-folders-feildset-form' +' .report-input');
    var data=JSON.parse(localStorage.getItem('formData'));
-   if(data!==null && data!==undefined){
+   if(data!=null && data!=undefined){
     
-  for (var i = 0; i < data.length;i++) {
-      $('#'+data[i].nameKey).value=data[i].name;
-      $('#'+data[i].urlKey).value=data[i].url;
+  for (var i = 0,j=0; i < inputFields.length; i+=2,j++) {
+
+      inputFields1[i].value=data[j].name;
+      inputFields1[i+1].value=data[j].url;
+      inputFields2[i].value=data[j].name;
+      inputFields2[i+1].value=data[j].url;
   }
-  submitFormData("quick-reports",inputFields1);
-  submitFormData("my-team-folders",inputFields2);
+
 }
+submitFormData("quick-reports");
+submitFormData("my-team-folders");
 }
 
 // when pressing enter in the input feild
@@ -344,17 +337,18 @@ for (var i = 0; i < inputs.length; i++) {
 // on expand click
 // document.getElementById("expand-url").addEventListener("click", setExpandLink);
 // on every tab click
+var TabClick=function(){
 var tabs =document.getElementsByClassName("tabs-links");
 
 for (var i = 0; i < tabs.length; i++) {
     tabs[i].addEventListener("click", setActiveTab);
   };
+}
 
-
-
+var SaveClick=function(){
 document.getElementById("quick-reports-save").addEventListener('click',checkInputs);
 document.getElementById("my-team-folders-save").addEventListener('click',checkInputs);
-
+}
 
 
 function initialize () {
