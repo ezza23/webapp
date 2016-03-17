@@ -35,8 +35,6 @@ function updateFrame(){
 
 }
 
-
-
 var addEventListener = function(obj, evt, fnc) {
 if (document.addEventListener) {
     var addEvent = function(elem, type, handler) {
@@ -123,8 +121,6 @@ TabsNavigation= function(e) {
            curr=tabsList[i].id;
         }
       }
-
-    // var selectedTabIndex = UTILS.getSelectedTabIndex(tabslist);
     switch (e.keyCode) {
         case 37:{
                 if(parseInt(curr[3])>1){
@@ -148,6 +144,7 @@ TabsNavigation= function(e) {
        }
         }
 
+// check the validity of the entered inputs
 var checkInputs=function(e){
 
   valid=1;
@@ -167,8 +164,6 @@ var checkInputs=function(e){
             inputFields[i+1].required=true;
             errorFocus(inputFields[i].id);
             valid=0;
-
-
       }
       if((inputFields[i].value=="" || inputFields[i].value==null) && (inputFields[i+1].value=="" || inputFields[i+1].value==null) ){
             inputFields[i].required=false;
@@ -186,6 +181,7 @@ var checkInputs=function(e){
   return ;
 };
 
+// red focus on wrong input
 var errorFocus=function(id){
    $('#'+id).addEventListener('focus',function(){
             // this.value="a";
@@ -210,9 +206,7 @@ var createLocalStorage = function(){
  if (localStorage) {
   for(j=0; j<2; j++){
     formid=forms[j].id;
-  
     thisForm=formid.substr(0,formid.indexOf('-feildset-form'));
-    
      var inputs=all('#'+thisForm+'-feildset-form' +' .report-input')
    for (var i = 0; i < inputs.length; i+=2) {
          if(inputs[i].value!==null && inputs[i].value!==""){
@@ -223,20 +217,17 @@ var createLocalStorage = function(){
                     urlKey : inputs[i+1].id
                 });
         }
-       }
-
-      };
-      // }
-    localStorage.setItem('formData', JSON.stringify(dataArr));
-    // tryget=JSON.parse(localStorage.getItem('formData'));
-   
+    };
+  };
+    localStorage.setItem('formData', JSON.stringify(dataArr));   
  }
 else{
-  console.log('ERROR: localStorage is not supported');
+     console.log('ERROR: localStorage is not supported');
 }  
 return;
 }
 
+// submit from data to dropdown list and local storage
 var submitFormData=function(currentTab,inputs){
 
   // list of the links
@@ -249,43 +240,36 @@ var submitFormData=function(currentTab,inputs){
        linkList.remove(i);
     }
   }
-
+// create items for drop down list
   for (var i = 0; i < inputs.length; i+=2) {
+    // if the inputs are not empty, add them
          if(inputs[i].value!==null && inputs[i].value!=="" && inputs[i+1].value!==null && inputs[i+1].value!==""){
           var opt = document.createElement('option');
-            
             opt.value = inputs[i+1].value;
             opt.innerHTML = inputs[i].value;
             linkList.appendChild(opt);
-            // alert(inputs[i+1].value);
-      
         }
       }
+      // if there are reports
     if(linkList.length!==0){
- 
-     
-    // update the frame and the expand icon url
-    if(currentTab==="quick-reports"){
-     setQrFrameExpandURL();
-     // show expand icon
-      $('.expand').classList.remove('hidden');
-    }
-   else
-    setTfFrameURL();
-    updateFrame();
-    // hide setting form
-     $('#'+currentTab+'-setting').click();
-
-     // show select elemnt and iframe
-    $('#'+currentTab +' .frame-content').classList.remove('hidden');
-    $('#'+currentTab+'-links').classList.remove('hidden');
-     // $('#'+currentTab+' .content-section').style.height="55em";
+      // update the frame and the expand icon url
+      if(currentTab==="quick-reports"){
+       setQrFrameExpandURL();
+       // show expand icon
+        $('.expand').classList.remove('hidden');
+      }
+     else
+      setTfFrameURL();
+      updateFrame();
+      // hide setting form
+       $('#'+currentTab+'-setting').click();
+       // show select elemnt and iframe
+      $('#'+currentTab +' .frame-content').classList.remove('hidden');
+      $('#'+currentTab+'-links').classList.remove('hidden');
   }
   
   else{
   // if the frame is empty.. // hide everything (revert to the initial state)
-  // if(linkList.length===0){
-    // alert('please fill in the reports you like and save or else press cancel');
     $('#'+currentTab+'-links').classList.add('hidden');
     $('#'+currentTab +' .frame-content').classList.add('hidden');
     $('.expand').classList.add('hidden');
@@ -293,44 +277,41 @@ var submitFormData=function(currentTab,inputs){
   createLocalStorage();
 
 }
-
+// load data from storage on page reload
 var loadDataFromStorage=function(e){
-  // var forms=document.getElementsByClassName("feildset-form")[0];
-  var inputFields1=all('#quick-reports-feildset-form' +' .report-input');
-  var inputFields2=all('#my-team-folders-feildset-form' +' .report-input');
+   var inputFields1=all('#quick-reports-feildset-form' +' .report-input');
+   var inputFields2=all('#my-team-folders-feildset-form' +' .report-input');
    var data=JSON.parse(localStorage.getItem('formData'));
+    // if there is data
    if(data!==null && data!==undefined){
-    
-  for (var i = 0; i < data.length;i++) {
-      $('#'+data[i].nameKey).value=data[i].name;
-      $('#'+data[i].urlKey).value=data[i].url;
-  }
-  submitFormData("quick-reports",inputFields1);
-  submitFormData("my-team-folders",inputFields2);
+      // fill in the feaildest form
+       for (var i = 0; i < data.length;i++) {
+          $('#'+data[i].nameKey).value=data[i].name;
+          $('#'+data[i].urlKey).value=data[i].url;
+      }
+        // fill in dropdown lists
+    $('#my-team-folders-save').click();
+    $('#quick-reports-save').click();
 }
 }
 
-// when pressing enter in the input feild
-
-var inputFields=all('#quick-reports-feildset-form' +' .report-input');
-for (var i = 0; i < inputFields.length; i++) {
- inputFields[i].addEventListener("keydown",function(event) {
-  // save when click Enter
-        if (event.keyCode == 13) {
-            event.preventDefault();
+// when pressing "enter" in the input feild
+var inputs=all('#quick-reports-feildset-form' +' .report-input');
+for (var i = 0; i < inputs.length; i++) {
+ inputs[i].addEventListener("keydown",function(e) {
+        if (e.keyCode == 13) {
+            e.preventDefault();
              $('#quick-reports-save').click();
             return false;
          }
-         // cancel when click esc
-         if(event.keyCode == 27){
+         if(e.keyCode == 27){
 
-          event.preventDefault();
-            $('#quickreports-cancel').click();
-            return false;
+          e.preventDefault();
+          $('#quickreports-cancel').click();
+          return false;
          }
     });
 };
-
 var inputs=all('#my-team-folders-feildset-form' +' .report-input');
 for (var i = 0; i < inputs.length; i++) {
  inputs[i].addEventListener("keydown",function(e) {
@@ -348,22 +329,15 @@ for (var i = 0; i < inputs.length; i++) {
     });
 };
 
-
-
 // on every tab click
 var tabs =document.getElementsByClassName("tabs-links");
 
 for (var i = 0; i < tabs.length; i++) {
     tabs[i].addEventListener("click", setActiveTab);
   };
-
-
-
+// on save button click
 document.getElementById("quick-reports-save").addEventListener('click',checkInputs);
 document.getElementById("my-team-folders-save").addEventListener('click',checkInputs);
-
-
-
 function initialize () {
 
   // quick-reports setting button
@@ -381,18 +355,24 @@ document.getElementById("my-team-folders-setting").addEventListener('click',func
   $("#my-team-folders-setting").classList.toggle('active-setting') ;
    // show the feildset content
     $("#my-team-folders-feildset-form").classList.toggle('hidden');
+     document.getElementById("folder1").focus();
+
 });
 
 // quick reports setting cancel 
 document.getElementById("quickreports-cancel").addEventListener('click',function(e){
    e.preventDefault();
-   $('#quick-reports-setting').click();
+$("#quick-reports-setting").classList.remove('active-setting') ;
+  $("#quick-reports-feildset-form").classList.add('hidden');
+   // $('#quick-reports-setting').click();
 
 });
 // my team folders setting cancel 
 document.getElementById("teamfolders-cancel").addEventListener('click',function(e){
    e.preventDefault();
-   $('#my-team-folders-setting').click();
+   $("#my-team-folders-setting").classList.remove('active-setting') ;
+     $("#my-team-folders-feildset-form").classList.add('hidden');
+   // $('#my-team-folders-setting').click();
 
 });
 if(window.location.hash)
