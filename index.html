@@ -17,14 +17,15 @@
 <body>
 	<header>
 		<div class="layout-wrap">
-			<a href="#"><img src="img/logo-netcraft.svg" alt="netcraft"></a>
-
+			<a href="#"><img src="img/logo-netcraft.svg" alt="netcraft"><span class="hidden"></span>logo</a>
+			
 			<form class="search-box">
+			<label for="search"><span class="hidden">search</span></label>
 				<input type="search" name="q" placeholder="search">
 			</form>
 		</div>
 	</header>
-
+	<h1 class="hidden">webAPP</h1>
 	<section class="page-body layout-wrap">
 		<div class="notifications">The data UTF</div>
 
@@ -87,56 +88,57 @@
 			
 			<div id="quick-reports" class="quickreports">
 				<div class="content-header quick-reports">
+					<label for="quick-reports-links"><span class="hidden">quick reports links</span></label>
 					<select id="quick-reports-links" class="hidden">
-						<!-- <option value="http://netcraft.co.il">netcraft</option>
-						<option value="http://www.w3schools.com/">w3 schools</option>
-						<option value="">link1</option> -->
 					</select> 
 					<div class="setting active-setting" id="quick-reports-setting">
-						<img src="img/icons/settings.png">
+						<img src="img/icons/settings.png" alt="setting-icon">
 					</div>
-					<!-- <input type="checkbox" id="set"> -->
+				
 					<div class="expand hidden">
-						<a href="" id="quickreports-expand-url" target="_blank"><img src="img/icons/expand.png"></a>
+						<a href="" id="quickreports-expand-url" target="_blank"><img src="img/icons/expand.png" alt="expand-icon"><span class="hidden">expand url</span></a>
 					</div>
 
 					<!-- ################### Feildset form ######################### -->
 					
 					<div class="feildset-form" id="quick-reports-feildset-form">
 						<form class="setting-form" onsubmit="event.preventDefault()">
-
+						<label for="setting"><span class="hidden">setting</span></label>
 							<fieldset class="form-feildset">
+								 <legend class="hidden">fieldset</legend>
 								<span>Report 01</span>
 								<div class="content-wrapper reportName">
-									<label class="report-lbl" for="">Name </label>
+									<label class="report-lbl" for="report1">Name </label>
 									<input class="report-input" type="text" id="report1">
 								</div>
 								<div class="content-wrapper reportURL">
-									<label class="report-lbl" for="">URL</label>
+									<label class="report-lbl" for="rurl1">URL</label>
 									<input class="report-input" type="url" id="rurl1">
 								</div>
 							</fieldset>
 
 							<fieldset class="form-feildset">
+								 <legend class="hidden">fieldset</legend>
 								<span>Report 02</span>
 								<div class="content-wrapper reportName">
-									<label class="report-lbl" for="">Name </label>
+									<label class="report-lbl" for="report2">Name </label>
 									<input class="report-input" type="text" id="report2">
 								</div>
 								<div class="content-wrapper reportURL">
-									<label class="report-lbl" for="">URL</label>
+									<label class="report-lbl" for="rurl2">URL</label>
 									<input class="report-input" type="url" id="rurl2">
 								</div>
 							</fieldset>
 
 							<fieldset class="form-feildset">
+								 <legend class="hidden">fieldset</legend>
 								<span>Report 03</span>
 								<div class="content-wrapper reportName">
-									<label class="report-lbl" for="">Name </label>
+									<label class="report-lbl" for="report3">Name </label>
 									<input class="report-input" type="text" id="report3">
 								</div>
 								<div class="content-wrapper reportURL">
-									<label class="report-lbl" for="">URL</label>
+									<label class="report-lbl" for="rurl3">URL</label>
 									<input class="report-input" type="url" id="rurl3">
 								</div>
 							</fieldset>
@@ -158,7 +160,7 @@
 			<div id="my-folders" class="myfolders hidden">
 				<div class="content-header">
 					<div class="expand">
-						<a href="http://www.paulirish.com/" target="_blank"><img src="img/icons/expand.png"></a>
+						<a href="http://www.paulirish.com/" target="_blank"><img src="img/icons/expand.png" alt="expand-icon"><span class="hidden">expand url</span></a>
 					</div>
 				</div>
 				<div class="frame-content my-folders">
@@ -171,10 +173,10 @@
 			<div id="my-team-folders" class="myteamfolders hidden">
 				<div class="content-header my-team-folders">
 					<select id="my-team-folders-links" class="hidden" >
-					
+					<label for="my-team-folders-links"><span class="hidden">my team folders links</span></label>
 					</select> 
 					<div class="setting active-setting" id="my-team-folders-setting">
-						<img src="img/icons/settings.png">
+						<img src="img/icons/settings.png" alt="setting-icon">
 					</div>
 					
 
@@ -182,39 +184,42 @@
 					
 					<div class="feildset-form" id="my-team-folders-feildset-form">
 						<form class="setting-form" onsubmit="event.preventDefault()">
-
+						<label for="setting"><span class="hidden">setting</span></label>
 							<fieldset class="form-feildset">
+								 <legend class="hidden">fieldset</legend>
 								<span>Folder 01</span>
 								<div class="content-wrapper reportName">
-									<label class="report-lbl" for="">Name </label>
+									<label class="report-lbl" for="folder1">Name </label>
 									<input class="report-input" type="text" id="folder1">
 								</div>
 								<div class="content-wrapper reportURL">
-									<label class="report-lbl" for="">URL</label>
+									<label class="report-lbl" for="furl1">URL</label>
 									<input class="report-input" type="url" id="furl1">
 								</div>
 							</fieldset>
 
 							<fieldset class="form-feildset">
+								 <legend class="hidden">fieldset</legend>
 								<span>Folder 02</span>
 								<div class="content-wrapper reportName">
-									<label class="report-lbl" for="">Name </label>
+									<label class="report-lbl" for="folder2">Name </label>
 									<input class="report-input" type="text" id="folder2">
 								</div>
 								<div class="content-wrapper reportURL">
-									<label class="report-lbl" for="">URL</label>
+									<label class="report-lbl" for="furl2">URL</label>
 									<input class="report-input" type="url" id="furl2">
 								</div>
 							</fieldset>
 
 							<fieldset class="form-feildset">
+								 <legend class="hidden">fieldset</legend>
 								<span>Folder 03</span>
 								<div class="content-wrapper reportName">
-									<label class="report-lbl" for="">Name </label>
+									<label class="report-lbl" for="folder3">Name </label>
 									<input class="report-input" type="text" id="folder3">
 								</div>
 								<div class="content-wrapper reportURL">
-									<label class="report-lbl" for="">URL</label>
+									<label class="report-lbl" for="furl3">URL</label>
 									<input class="report-input" type="url" id="furl3">
 								</div>
 							</fieldset>
@@ -234,7 +239,7 @@
 			<div id="public-folders" class="publicfolders hidden">
 				<div class="content-header public-folders">
 					<div class="expand">
-						<a href="http://www.paulirish.com/" target="_blank"><img src="img/icons/expand.png"></a>
+						<a href="http://www.paulirish.com/" target="_blank"><img src="img/icons/expand.png" alt="expand-icon"><span class="hidden">paulirish</span></a>
 					</div>
 				</div>
 				<div class="frame-content public-folders">
