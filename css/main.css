@@ -24,7 +24,7 @@ header{
 	display: inline-block;
 	float: right;
     padding-left: 0px;
-   padding-bottom: 2px;
+    padding-bottom: 2px;
   	background-color: #fff;
     border: 1px solid;
     border-color:  #CCC;
@@ -71,7 +71,6 @@ nav :last-child{
 	float: left;
 }
 .nav-section{
-	/*background:url(..//img/icons/action-report-new.png) left 50% top 60px no-repeat;*/
     color: #EBEBEB;
     opacity: 1;
     cursor: pointer;
@@ -107,7 +106,6 @@ nav :last-child{
 	 margin-top: 5em;
 }
 .menu-caption{
-	
 	color: rgb(60, 60, 60);
 	margin-left: 5%;
 	margin-bottom: 1px;
@@ -116,11 +114,9 @@ nav :last-child{
 	font-size: 12px;
     padding:0;
     bottom: 0;
-    width: 100%;
-	  
+    width: 100%;	  
 }
 .menu-caption:after{
-   /*content: url(..//img/icons/arrow.png);*/
     float: right;
     content: "";
     width: 0;
@@ -136,21 +132,15 @@ nav :last-child{
     display: block;
 }
 .menu-caption > p{
-	/*padding: 2%;
-	text-align: left;*/
 	 padding: 2%;
     text-align: left;
     font-size: 1em;
-}
-.menu-caption:hover:after,.nav-section:hover  .menu-caption:after{
-    /*transform: rotate(180deg);*/
 }
 .menu:hover .action-list, .nav-section:hover .action-list{
 	display: block;
 }
 .action-list{
     margin: 0;
-   /* padding: 0 20px 0 20px;*/
     list-style: none;
     text-align: left;
     display: none;
@@ -175,11 +165,9 @@ nav :last-child{
 	text-decoration: none;
 	font-size: 13px;
 }
-
 .action-list > li > a:hover,.links-list > li > a:hover{
 	text-decoration: underline;
 }
-
 .tabs{
 	float: left;
 	width: 100%;
@@ -200,11 +188,9 @@ nav :last-child{
     margin-right: 2.66%;
     margin-top: 1px;
     font-size: 16px;
-
 }
 .active-tab{
-	background-color:#ebebeb;
-    
+	background-color:#ebebeb;  
 }
 .active-tab > a{
 	color:rgb(60, 60, 60) !important;
@@ -216,24 +202,12 @@ nav :last-child{
 	text-decoration: none;
 	display: block;
     padding: 10px 0;
-    /*font-size: 0.8em;*/
     color: #EBEBEB;
 }
-/*.tabs ul >li > a:active{
-	color: green;
-}*/
-/*.active, .active:hover{
-background-color:#EBEBEB !important;
-
-}*/
 .content-header{
 	width: 100%;
 }
-
-/**/
-
 .content-section{
-	/*margin: 13.2em 0 0 -3px;*/
     padding: 10px 10px 0 10px;
     background: #ebebeb;
     margin-left: -0.25%;
@@ -250,12 +224,7 @@ select{
     border:none;
     outline: medium none;
     border-radius: 0;
-
-
 }
-
-
-
 .setting{
 	float: right;
     cursor: pointer;
@@ -264,8 +233,7 @@ select{
     text-align: center;
     width: 26px;
     height: 28px;
-    padding: 0.4em;
-   
+    padding: 0.4em;  
 }
 .setting:hover{
 	background-color: white;
@@ -273,13 +241,6 @@ select{
 .active-setting{
 	background-color: white;
 }
-/*#set{
-	display: none;
-}
-#set:checked ~ .feildset-form{
-	display: block;
-}*/
-
 .expand{
 	float: right;
 	cursor: pointer;
@@ -291,17 +252,14 @@ select{
 .expand > img{
 	margin-top: 4px;
 }
-
 .feildset-form{
-	
 	background-color: white;
     box-shadow: 1px 6px 6px 2px rgba(50, 50, 50, 0.3);
     padding: 1.5%;
     position: absolute;
     width: 84.7%;
-    margin-top: 14px;
+    margin-top: 35px;
     overflow: hidden
-
 }
 .form-feildset > span{
  	color: rgb(60, 60, 60);
@@ -309,19 +267,11 @@ select{
     top: 18px;
     font-size: 16px;
 }
-.setting-form{
-	/*margin-right: 1em;
-	margin-top: 1.2em;
-	display: inline-block;
-	margin-left: 1em;*/
-}
-
 .form-feildset{
 	border:none;
 	background-color: #DCDADA;
 	margin-bottom: 0.6em;
 	height: 2em;
-/*	text-align: center;*/
     font-size: 1.1rem;
     padding: 1% 2%;
     position: relative;
@@ -354,7 +304,6 @@ select{
     font-size: 16px;
     margin-top: 2%;
 }
-
 .setting-save{
     background: black;
     color: white;
@@ -380,11 +329,9 @@ button{
 	cursor: pointer;
 }
 .frame-area{
-	    width: 100%;
+	width: 100%;
     height: 50em;
-   
-    border: none;
-   
+    border: none; 
 }
 .visible {
 	display: block;
